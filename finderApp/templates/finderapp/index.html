@@ -1,0 +1,71 @@
+{% extends 'finderapp/base.html' %}
+
+{% block content%}
+<h1>
+	{% if user.is_authenticated %}
+		{{ user.username }}'s Todo List!
+	{% else %}
+		Hello, anonymous Todo List user!
+	{% endif %}
+</h1>
+
+{% if error %}
+	<p class="text-danger">{{ error }}</p>
+{% endif %}
+
+{% if user.is_authenticated %}
+	<form method="POST" action="/">
+		{% csrf_token %}
+		<div class="form-group">
+			<label>Who are you?</label>
+			<select name="userid" class="form-control">
+				{% for u in users %}
+					<option value="{{ u.id }}">
+						{{ u.username }}
+					</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div class="form-group">
+			<label>What you gotta do?</label>
+			<input type="text" name="text">
+		</div>
+		<input type="submit" name="btn btn-primary">
+	</form>
+{% endif %}
+
+<div class="row">
+	<div class="col-xs-12">
+		<h2>The list of doing</h2>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Item</th>
+					<th>Name</th>
+					<th>Done?</th>
+					<th>Remove?</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for t in todos %}
+					<tr>
+						<td>{{ t.text }}</td>
+						<td>{{ t.user }}</td>
+						<td>
+							{% if t.is_complete %}
+								<i class="glyphicon glyphicon-ok"></i>
+							{% else %}
+								<a href="{{ t.id }}/done/" class="btn-sm btn-danger">Mark Done</a>
+							{% endif %}
+						</td>
+						<td>
+							<a href="{{ t.id }}/delete/" class="btn-sm btn-primary">Remove</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>	
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+<!--
+Grabbed the navbar example from here:
+https://getbootstrap.com/examples/navbar/
+-->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Django finderApp</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{% url 'index' %}">Home</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+       {% if not user.is_authenticated %}
+         <li><a href="{% url 'signup' %}">Sign Up</a></li>
+         <li><a href="{% url 'login' %}">Log In</a></li>
+       {% else %}
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+               role="button" aria-haspopup="true" aria-expanded="false">
+              {{user.username}} <span class="caret"></span>
+            </a>
+            
+            <ul class="dropdown-menu">
+              <li><a href="{% url 'logout' %}">Logout</a></li>
+              <li><a href="/admin">Admin</a></li>
+            </ul>
+         </li>
+       {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
