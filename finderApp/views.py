@@ -1,20 +1,12 @@
-from django.contrib.auth.models import User
-from django.contrib import auth
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from .models import Todo
-
-
-def index(request):
-    return HttpResponse("Hello, world. You're at the finder index.")
-
-
 
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Todo
+from .models import Lawyer
+from .forms import LawyerForm
+
 
 # Main routes
 def index(request):
@@ -99,3 +91,49 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect('index')
+
+
+
+
+def lawyer_list(request):
+    lawyers = Lawyer.objects.all()
+    return render(request, 'lawyer_list.html', {'lawyers': lawyers})
+
+def lawyer_detail(request, pk):
+    lawyer = Lawyer.objects.get(id=pk)
+    return render(request, 'lawyer_detail.html', {'lawyer': lawyer})
+
+def lawyer_create(request):
+    if request.method == 'POST':
+        form = LawyerForm(request.POST)
+        if form.is_valid():
+            lawyer = form.save()
+            return redirect('lawyer_detail', pk=lawyer.pk)
+    else:
+        form = LawyerForm()
+        return render(request, 'lawyer_form.html', {'form': form})
+
+def lawyer_edit(request, pk):
+    lawyer = Lawyer.objects.get(id=pk)
+    if request.method == 'POST':
+        form = LawyerForm(request.POST, instance=lawyer)
+        if form.is_valid():
+            lawyer = form.save()
+            return redirect('lawyer_detail', pk=lawyer.pk)
+    else:
+        form = LawyerForm(instance=lawyer)
+        return render(request, 'lawyer_form.html', {'form': form})
+
+def lawyer_delete(request, pk):
+    Lawyer.objects.get(id=pk).delete()
+    return redirect('lawyer_list')
+
+
+
+
+
+
+
+
+
+

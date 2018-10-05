@@ -1,0 +1,14 @@
+{% extends 'finderapp/base.html' %}
+
+
+{% block content %}
+<h2>{{ lawyer.name }}(<a href="{% url 'lawyer_edit' pk=lawyer.pk %}">edit</a>)</h2>
+<h4>Ratings: {{ lawyer.ratings}}</h4>
+<img src="{{ lawyer.photo_url}}" alt="lawyer_photo" class="lawyer-photo">
+
+
+
+<br><br><br>
+
+<a href="{% url 'lawyer_delete' pk=lawyer.pk %}" class="delete">Delete</a>
+{% endblock %}

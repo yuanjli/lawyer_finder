@@ -1,0 +1,13 @@
+{% extends 'finderapp/base.html' %}
+
+{% block content %}
+<h2>Lawyers<a href="{% url 'lawyer_create' %}">(+)</a></h2>
+<ul>
+	{% for lawyer in lawyers %}
+	<li>
+		<a href="{% url 'lawyer_detail' pk=lawyer.pk %}">{{ lawyer.name }}</a>
+	</li>
+
+	{% endfor %}
+</ul>
+{% endblock %}
