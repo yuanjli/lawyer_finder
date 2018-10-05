@@ -1,6 +1,8 @@
-from django.shortcuts import render
-# Create your views here.
+from django.contrib.auth.models import User
+from django.contrib import auth
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from .models import Todo
 
 
 def index(request):
@@ -64,14 +66,11 @@ def signup(request):
     elif request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        firstname = request.POST['firstname']
-        lastname = request.POST['lastname']
+
 
         try:
             user = User.objects.create_user(username=username, 
-                password=password, 
-                first_name=firstname, 
-                last_name=lastname)
+                password=password)
             if user is not None:
                 # auth.login(request, user)
                 return login(request)
