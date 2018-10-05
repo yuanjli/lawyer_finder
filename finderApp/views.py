@@ -45,6 +45,9 @@ def index(request):
             new_todo.save()
         return redirect('index')
 
+def index2(request):
+    return render(request, 'finderapp/index2.html')
+
 def delete(request, todo_id):
     Todo.objects.get(id=todo_id).delete()
     return redirect('index')

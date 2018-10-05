@@ -5,7 +5,13 @@
 <ul>
 	{% for lawyer in lawyers %}
 	<li>
-		<a href="{% url 'lawyer_detail' pk=lawyer.pk %}">{{ lawyer.name }}</a>
+		<a href="{% url 'lawyer_detail' pk=lawyer.pk %}">{{ lawyer.name }}</a>	
+		{{ lawyer.name }}
+		{{ lawyer.name }}
+		{{ lawyer.name }}
+		{{ lawyer.name }}
+		{{ lawyer.name }}
+
 	</li>
 
 	{% endfor %}
