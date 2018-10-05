@@ -23,12 +23,17 @@ def index(request):
 
     if request.method == 'GET':
         # Display all teh todos
-        return render(request, 
-            'finderapp/index.html',
-            { 
-                'todos': todos,
-                'users': users
-            })
+        if request.user.is_authenticated:
+            print("Logged in")
+            return render(request, 
+                'finderapp/index.html',
+                { 
+                    'todos': todos,
+                    'users': users
+                })
+        else:
+            print("Not logged in")
+            return render(request, 'finderapp/signup.html')
     elif request.method == 'POST':
         # Add a new todo
         try:
