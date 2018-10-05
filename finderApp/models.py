@@ -49,8 +49,8 @@ class UserAnswer(models.Model):
     def __str__(self):
         return self.name
 
-    def __unicode__(self):
-        return self.my_answer.text[:10]
+    # def __unicode__(self):
+    #     return self.my_answer.text[:10]
 
 class Lawyer(models.Model):
     name = models.CharField(max_length=100)

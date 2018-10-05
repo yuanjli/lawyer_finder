@@ -133,7 +133,15 @@ def lawyer_delete(request, pk):
 
 
 
-
+def user_answer_create(request):
+    if request.method == 'POST':
+        form = Index(request.POST)
+        if form.is_valid():
+            lawyer = form.save()
+            return redirect('lawyer_detail', pk=lawyer.pk)
+    else:
+        form = LawyerForm()
+        return render(request, 'lawyer_form.html', {'form': form})
 
 
 

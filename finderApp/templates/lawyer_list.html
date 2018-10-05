@@ -5,21 +5,14 @@
 <a href="{% url 'lawyer_create' %}" class="btn btn-info">Add</a>
 <ul>
 	{% for lawyer in lawyers %}
-	<li>
-		<a href="{% url 'lawyer_detail' pk=lawyer.pk %}">{{ lawyer.name }}</a>	
-		{{ lawyer.specialties }}
-		{{ lawyer.ratings }}
-		{{ lawyer.experience }}
-		{{ lawyer.numbers }}
-
-	</li>
+	
 	<div class="card" style="width: 18rem;">
   <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
+    <h5 class="card-title">{{ lawyer.name }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{ lawyer.ratings }}</h6>
+    <p class="card-text">{{ lawyer.specialties }}.</p>
+    <a href="{% url 'lawyer_detail' pk=lawyer.pk %}" class="card-link">Details</a>
+    <a href="https://www.google.com/" class="card-link">search on Google </a>
   </div>
 </div>
 
