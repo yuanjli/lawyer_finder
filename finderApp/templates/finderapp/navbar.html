@@ -2,15 +2,20 @@
 Grabbed the navbar example from here:
 https://getbootstrap.com/examples/navbar/
 -->
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Luchar</a>
+      <a class="navbar-brand animated bounce delay-1s" href="#">Luchar</a>
     </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="{% url 'index' %}">Home</a></li>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <div id="navbarText" class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active"><a href="{% url 'index' %}">Home</a></li>
       </ul>
+
       <ul class="nav navbar-nav navbar-right">
        {% if not user.is_authenticated %}
          <li><a href="{% url 'signup' %}">Sign Up</a></li>
