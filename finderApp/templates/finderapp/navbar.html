@@ -5,7 +5,10 @@ https://getbootstrap.com/examples/navbar/
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand animated zoomIn" href="#">Luchar</a>
+
+      <a class="navbar-brand animated zoomIn" href="http://localhost:8000">
+        <img src="../static/img/logo2.png" width="161" height="50" alt="">
+      </a>
     </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -13,15 +16,18 @@ https://getbootstrap.com/examples/navbar/
 
     <div id="navbarText" class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active animated zoomIn"><a href="{% url 'index' %}">Home</a></li>
-        
-        <li class="nav-item active animated zoomIn"><a href="{% url 'lawyer_list' %}">Lawyers</a></li>
+        <li class="nav-item active animated zoomIn">
+          <a class="nav-link" href="{% url 'index' %}">Home</a>
+        </li>
+        <li class="nav-item animated zoomIn">
+          <a class="nav-link" href="{% url 'lawyer_list' %}">Lawyers</a>
+        </li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
        {% if not user.is_authenticated %}
-         <li><a href="{% url 'signup' %}">Sign Up</a></li>
-         <li><a href="{% url 'login' %}">Log In</a></li>
+         <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">Sign Up</a></li>
+         <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Log In</a></li>
        {% else %}
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"

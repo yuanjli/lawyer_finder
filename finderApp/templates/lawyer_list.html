@@ -3,6 +3,10 @@
 {% block content %}
 <h2>Lawyers</h2>
 <a href="{% url 'lawyer_create' %}" class="btn btn-info">Add</a>
+<br>
+
+<hr>
+
 <ul>
 	{% for lawyer in lawyers %}
 	
@@ -15,6 +19,7 @@
     <a href="https://www.google.com/" class="card-link">search on Google </a>
   </div>
 </div>
+<br>
 
 	{% endfor %}
 </ul>

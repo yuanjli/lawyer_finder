@@ -4,6 +4,12 @@
   margin-right: auto;
 }
 
-li {
-	border: 5px;
+.abc {
+	border: 10px;
+}
+
+.test {
+	border: 1px solid black;
+	padding: 30px;
+
 }

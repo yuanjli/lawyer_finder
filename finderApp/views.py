@@ -100,7 +100,10 @@ def logout(request):
 
 def lawyer_list(request):
     lawyers = Lawyer.objects.all()
-    return render(request, 'lawyer_list.html', {'lawyers': lawyers})
+    if request.user.is_authenticated:
+        return render(request, 'lawyer_list.html', {'lawyers': lawyers})
+    else:
+        return render(request, 'finderapp/signup.html')
 
 def lawyer_detail(request, pk):
     lawyer = Lawyer.objects.get(id=pk)
